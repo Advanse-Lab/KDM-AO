@@ -1,10 +1,5 @@
-package lightweight_extension;
+package lightweight;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import kdm.code.CodePackage;
 import kdm.kdm.ExtensionFamily;
 import kdm.kdm.KdmFactory;
@@ -12,12 +7,12 @@ import kdm.kdm.Segment;
 import kdm.kdm.Stereotype;
 import kdm.kdm.TagDefinition;
 
-/*import PesadoKDM.kdm.code.CodePackage;
-import PesadoKDM.kdm.kdm.ExtensionFamily;
-import PesadoKDM.kdm.kdm.KdmFactory;
-import PesadoKDM.kdm.kdm.Segment;
-import PesadoKDM.kdm.kdm.Stereotype;
-import PesadoKDM.kdm.kdm.TagDefinition;*/
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
 
 public class Profiles {
 
@@ -41,7 +36,7 @@ public class Profiles {
 	public static Stereotype operationPointCutUnit;
 	public static TagDefinition operation;
 	public static Stereotype withinCodePointCutUnit;
-	public static Stereotype executionPointCut;
+	public static Stereotype executionPointCutUnit;
 	public static Stereotype callPointCutUnit;
 	public static Stereotype preInitializationPointCutUnit;
 	public static Stereotype adviceExecutionPointCutUnit;
@@ -166,9 +161,13 @@ public class Profiles {
 				lightweightExFamily.getStereotype().add(crossCuttingConcern);//Add the stereotype into the extension family
 				//****[End crossCuttingConcern]****
 				
-				//****[Begin AspectUnit]****
-				//public static Stereotype pointCutUnit;
-				//****[End AspectUnit]****
+				//****[Begin pointCutUnit]****
+				//This is an abstract element. It's not advised apply this stereotype
+				Stereotype pointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				pointCutUnit.setName("pointCutUnit");
+				pointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(pointCutUnit);//Add the stereotype into the extension family
+				//****[End pointCutUnit]****
 								
 				//****[Begin compositePointCutUnit]****
 				Stereotype compositePointCutUnit = KdmFactory.eINSTANCE.createStereotype();
@@ -189,7 +188,6 @@ public class Profiles {
 				compositePointCutUnit.getTag().add(composite); //Association of the tag into the stereotype 
 				
 				
-				
 				//Creation of the TagDefinition compositionType
 				compositionType = KdmFactory.eINSTANCE.createTagDefinition();
 				compositionType.setTag("compositionType");
@@ -197,7 +195,7 @@ public class Profiles {
 				compositePointCutUnit.getTag().add(compositionType); //Association of the tag into the stereotype 
 				//****[End compositePointCutUnit]****
 				
-				//****[Begin operationPointCutUnit]****
+				//****[Begin operationPointCutUnit]**** 
 				Stereotype operationPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
 				operationPointCutUnit.setName("operationPointCutUnit");
 				operationPointCutUnit.setType("MemberUnit");
@@ -207,7 +205,7 @@ public class Profiles {
 				operation = KdmFactory.eINSTANCE.createTagDefinition();
 				operation.setTag("operation");
 				operation.setType("MemberUnit");
-				aspectUnit.getTag().add(operation); //Association of the tag into the stereotype 
+				operationPointCutUnit.getTag().add(operation); //Association of the tag into the stereotype 
 				//****[End operationPointCutUnit]****
 				
 				
@@ -218,12 +216,12 @@ public class Profiles {
 				lightweightExFamily.getStereotype().add(withinCodePointCutUnit);//Add the stereotype into the extension family
 				//****[End withinCodePointCutUnit]****
 				
-				//****[Begin executionPointCut]****
-				Stereotype executionPointCut = KdmFactory.eINSTANCE.createStereotype();
-				executionPointCut.setName("executionPointCut");
-				executionPointCut.setType("MemberUnit");
-				lightweightExFamily.getStereotype().add(executionPointCut);//Add the stereotype into the extension family
-				//****[End executionPointCut]****
+				//****[Begin executionPointCutUnit]****
+				Stereotype executionPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				executionPointCutUnit.setName("executionPointCutUnit");
+				executionPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(executionPointCutUnit);//Add the stereotype into the extension family
+				//****[End executionPointCutUnit]****
 				
 				//****[Begin callPointCutUnit]****
 				Stereotype callPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
@@ -232,27 +230,43 @@ public class Profiles {
 				lightweightExFamily.getStereotype().add(callPointCutUnit);//Add the stereotype into the extension family
 				//****[End callPointCutUnit]****
 				
-				/*
+				
 				//****[Begin preInitializationPointCutUnit]****
-				public static Stereotype preInitializationPointCutUnit;
+				Stereotype preInitializationPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				preInitializationPointCutUnit.setName("preInitializationPointCutUnit");
+				preInitializationPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(preInitializationPointCutUnit);//Add the stereotype into the extension family
 				//****[End preInitializationPointCutUnit]****
 				
 				//****[Begin adviceExecutionPointCutUnit]****
-				public static Stereotype adviceExecutionPointCutUnit;
+				Stereotype adviceExecutionPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				adviceExecutionPointCutUnit.setName("adviceExecutionPointCutUnit");
+				adviceExecutionPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(adviceExecutionPointCutUnit);//Add the stereotype into the extension family
 				//****[End adviceExecutionPointCutUnit]****
 				
 				//****[Begin propertyPointCutUnit]****
-				public static Stereotype propertyPointCutUnit;
+				//This is an abstract element. It's not possible apply this stereotype
+				Stereotype propertyPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				propertyPointCutUnit.setName("propertyPointCutUnit");
+				propertyPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(propertyPointCutUnit);//Add the stereotype into the extension family 
 				//****[End propertyPointCutUnit]****
 				
 				//****[Begin getPointCutUnit]****
-				public static Stereotype getPointCutUnit;
+				Stereotype getPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				getPointCutUnit.setName("getPointCutUnit");
+				getPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(getPointCutUnit);//Add the stereotype into the extension family
 				//****[End getPointCutUnit]****
 				
 				//****[Begin setPointCutUnit]****
-				public static Stereotype setPointCutUnit;
+				Stereotype setPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				setPointCutUnit.setName("setPointCutUnit");
+				setPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(setPointCutUnit);//Add the stereotype into the extension family
 				//****[End setPointCutUnit]****
-				*/
+				
 				
 				//****[Begin adviceUnit]****
 				Stereotype adviceUnit = KdmFactory.eINSTANCE.createStereotype();
@@ -273,54 +287,98 @@ public class Profiles {
 				adviceUnit.getTag().add(adviceExecutionType); //Association of the tag into the stereotype 
 				//****[End adviceUnit]****
 				
-				/*
+				
 				//****[Begin PointCutPointCutUnit]****
-				public static Stereotype PointCutPointCutUnit;
+				//This is an abstract element. It's not possible apply this stereotype
+				Stereotype PointCutPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				PointCutPointCutUnit.setName("PointCutPointCutUnit");
+				PointCutPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(PointCutPointCutUnit);//Add the stereotype into the extension family
 				//****[End PointCutPointCutUnit]****
 				
 				//****[Begin cFlowPointCutUnit]****
-				public static Stereotype cFlowPointCutUnit;
+				Stereotype cFlowPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				cFlowPointCutUnit.setName("cFlowPointCutUnit");
+				cFlowPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(preInitializationPointCutUnit);//Add the stereotype into the extension family
 				//****[End cFlowPointCutUnit]****
 				
 				//****[Begin cFlowBelowPointCutUnit]****
-				public static Stereotype cFlowBelowPointCutUnit;
+				Stereotype cFlowBelowPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				cFlowBelowPointCutUnit.setName("cFlowBelowPointCutUnit");
+				cFlowBelowPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(cFlowBelowPointCutUnit);//Add the stereotype into the extension family
 				//****[End cFlowBelowPointCutUnit]****
 				
 				//****[Begin typePointCutUnit]****
-				public static Stereotype typePointCutUnit;
-				public static TagDefinition type;
+				Stereotype typePointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				typePointCutUnit.setName("typePointCutUnit");
+				typePointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(typePointCutUnit);//Add the stereotype into the extension family
+
+				//Creation of the TagDefinition adviceExecutionType
+				type = KdmFactory.eINSTANCE.createTagDefinition();
+				type.setTag("type");
+				type.setType("type");//Look for the right one
+				typePointCutUnit.getTag().add(type); //Association of the tag into the stereotype 
 				//****[End typePointCutUnit]****
 				
 				//****[Begin withinPointCutUnit]****
-				public static Stereotype withinPointCutUnit;
+				Stereotype withinPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				withinPointCutUnit.setName("withinPointCutUnit");
+				withinPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(withinPointCutUnit);//Add the stereotype into the extension family
 				//****[End withinPointCutUnit]****
 				
 				//****[Begin exceptionPointCutUnit]****
-				public static Stereotype exceptionPointCutUnit;
+				Stereotype exceptionPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				exceptionPointCutUnit.setName("exceptionPointCutUnit");
+				exceptionPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(exceptionPointCutUnit);//Add the stereotype into the extension family
 				//****[End exceptionPointCutUnit]****
 				
 				//****[Begin staticInitializationPointCutUnit]****
-				public static Stereotype staticInitializationPointCutUnit;
+				Stereotype staticInitializationPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				staticInitializationPointCutUnit.setName("staticInitializationPointCutUnit");
+				staticInitializationPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(staticInitializationPointCutUnit);//Add the stereotype into the extension family
 				//****[End staticInitializationPointCutUnit]****
 				
 				//****[Begin thisPointCutUnit]****
-				public static Stereotype thisPointCutUnit;
+				Stereotype thisPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				thisPointCutUnit.setName("thisPointCutUnit");
+				thisPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(thisPointCutUnit);//Add the stereotype into the extension family
 				//****[End thisPointCutUnit]****
 				
 				//****[Begin argsPointCutUnit]****
-				public static Stereotype argsPointCutUnit;
+				Stereotype argsPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				argsPointCutUnit.setName("argsPointCutUnit");
+				argsPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(argsPointCutUnit);//Add the stereotype into the extension family
 				//****[End argsPointCutUnit]****
 				
 				//****[Begin targetPointCutUnit]****
-				public static Stereotype targetPointCutUnit;
+				Stereotype targetPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				targetPointCutUnit.setName("targetPointCutUnit");
+				targetPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(targetPointCutUnit);//Add the stereotype into the extension family
 				//****[End targetPointCutUnit]****
 				
 				//****[Begin contextExposingPointCutUnit]****
-				public static Stereotype contextExposingPointCutUnit;
-				public static TagDefinition argsNames;
+				//This is an abstract element. It's not possible apply this stereotype
+				Stereotype contextExposingPointCutUnit = KdmFactory.eINSTANCE.createStereotype();
+				contextExposingPointCutUnit.setName("contextExposingPointCutUnit");
+				contextExposingPointCutUnit.setType("MemberUnit");
+				lightweightExFamily.getStereotype().add(contextExposingPointCutUnit);//Add the stereotype into the extension family
+				
+				//Creation of the TagDefinition adviceExecutionType
+				argsNames = KdmFactory.eINSTANCE.createTagDefinition();
+				argsNames.setTag("argsNames");
+				argsNames.setType("String");//Look for the right one
+				contextExposingPointCutUnit.getTag().add(argsNames); //Association of the tag into the stereotype 
+				
 				//****[End contextExposingPointCutUnit]****
-				 * 
-				 */
 				
 				//*****************[End Extension Family]**********************
 

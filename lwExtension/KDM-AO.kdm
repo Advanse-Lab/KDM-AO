@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kdm:Segment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:action="http://kdm.omg.org/action" xmlns:code="http://kdm.omg.org/code" xmlns:kdm="http://kdm.omg.org/kdm">
+  <extensionFamily name="AspectConcepts">
+    <stereotype name="AspectUnit" type="ClassUnit">
+      <tag tag="isPrivileged" type="boolean"/>
+      <tag tag="perType" type="AspectInstantiationType"/>
+      <tag tag="perPointCut" type="PointCut"/>
+      <tag tag="declaredParents" type="Generalization"/>
+      <tag tag="declaredImplements" type="InterfaceRealization"/>
+      <tag tag="preceeds" type="AspectUnit"/>
+      <tag tag="precededBy" type="AspectUnit"/>
+    </stereotype>
+    <stereotype name="StaticCrossCuttingFeatureStr" type="StorableUnit">
+      <tag tag="onTypeStr" type="Type"/>
+    </stereotype>
+    <stereotype name="StaticCrossCuttingFeatureMtd" type="MethodUnit">
+      <tag tag="onTypeMtd" type="Type"/>
+    </stereotype>
+    <stereotype name="CrossCuttingConcern" type="Package"/>
+    <stereotype name="PointCutUnit" type="MemberUnit"/>
+    <stereotype name="CompositePointCutUnit" type="MemberUnit">
+      <tag tag="compositionType" type="PointCutCompositionType"/>
+    </stereotype>
+    <stereotype name="OperationPointCut" type="MemberUnit">
+      <tag tag="operation" type="MethodUnit[0..*]"/>
+    </stereotype>
+    <stereotype name="WithinCodePointCutUnit" type="MemberUnit"/>
+    <stereotype name="ExecutionPointCutUnit" type="MemberUnit"/>
+    <stereotype name="CallPointCutUnit" type="MemberUnit"/>
+    <stereotype name="PreInitializationPointCut" type="MemberUnit"/>
+    <stereotype name="InitializationPointCut" type="MemberUnit"/>
+    <stereotype name="AdviceExecutionPointCutUnit" type="MemberUnit"/>
+    <stereotype name="PropertyPointCutUnit" type="MemberUnit"/>
+    <stereotype name="GetPointCutUnit" type="MemberUnit"/>
+    <stereotype name="SetPointCutUnit" type="MemberUnit"/>
+    <stereotype name="AdviceUnit" type="ControlElement">
+      <tag tag="adviceExecution" type="AdviceExecutionType"/>
+      <tag tag="pointCut" type="MemberUnit"/>
+    </stereotype>
+    <stereotype name="PointCutPointCut" type="MemberUnit"/>
+    <stereotype name="CFlowPointCutUnit" type="MemberUnit"/>
+    <stereotype name="CFlowBelowPointCutUnit" type="MemberUnit"/>
+    <stereotype name="TypePointCutUnit" type="MemberUnit">
+      <tag tag="type" type="Type"/>
+    </stereotype>
+    <stereotype name="WithinPointCutUnit" type="MemberUnit"/>
+    <stereotype name="ExceptionPointCutUnit" type="MemberUnit"/>
+    <stereotype name="StaticInitializationPointCutUnit" type="MemberUnit"/>
+    <stereotype name="ThisPointCutUnit" type="MemberUnit"/>
+    <stereotype name="ArgsPointCutUnit" type="MemberUnit"/>
+    <stereotype name="TargetPointCutUnit" type="MemberUnit"/>
+    <stereotype name="ContextExposingPointCutUnit" type="MemberUnit">
+      <tag tag="argNames" type="String"/>
+    </stereotype>
+  </extensionFamily>
+  <model xsi:type="code:CodeModel" name="TestSystem">
+    <codeElement xsi:type="code:Package" stereotype="//@extensionFamily.0/@stereotype.3" name="persistence">
+      <codeElement xsi:type="code:Package" stereotype="//@extensionFamily.0/@stereotype.3" name="connection">
+        <codeElement xsi:type="code:ClassUnit" stereotype="//@extensionFamily.0/@stereotype.0" name="ConnectionComposition">
+          <attribute tag="export" value="public export"/>
+          <comment text="/**"/>
+          <codeElement xsi:type="code:StorableUnit" name="connectionManager">
+            <attribute tag="export" value="public export"/>
+          </codeElement>
+          <codeElement xsi:type="code:MemberUnit" stereotype="//@extensionFamily.0/@stereotype.5" name="openConnection" type="//@model.0/@codeElement.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.0">
+            <attribute tag="export" value="public abstract export"/>
+            <codeElement xsi:type="code:Signature" name="openConnection"/>
+          </codeElement>
+          <codeElement xsi:type="code:ControlElement" stereotype="//@extensionFamily.0/@stereotype.16" name="">
+            <attribute tag="export" value="public export"/>
+            <taggedValue xsi:type="kdm:TaggedValue" tag="//@extensionFamily.0/@stereotype.16/@tag.0" value="BEFOREADVICE"/>
+            <taggedValue xsi:type="kdm:TaggedRef" tag="//@extensionFamily.0/@stereotype.16/@tag.0" reference="//@model.1"/>
+            <taggedValue xsi:type="kdm:TaggedValue" tag="//@extensionFamily.0/@stereotype.16/@tag.1" value="openConnection"/>
+            <codeElement xsi:type="code:Signature" name="openConnection"/>
+            <codeElement xsi:type="action:BlockUnit">
+              <attribute tag="export" value="public export"/>
+              <codeElement xsi:type="code:Signature"/>
+            </codeElement>
+          </codeElement>
+          <codeElement xsi:type="code:MethodUnit" name="ConnectionComposition"/>
+        </codeElement>
+      </codeElement>
+    </codeElement>
+  </model>
+  <model xsi:type="code:CodeModel">
+    <codeElement xsi:type="code:ClassUnit" stereotype="//@extensionFamily.0/@stereotype.0" name="Account">
+      <codeElement xsi:type="code:MemberUnit" stereotype="//@extensionFamily.0/@stereotype.14" name="accountBalance"/>
+      <codeElement xsi:type="code:MemberUnit" stereotype="//@extensionFamily.0/@stereotype.15" name="accountBalance"/>
+      <codeElement xsi:type="code:MemberUnit" stereotype="//@extensionFamily.0/@stereotype.5" name="accountDebit"/>
+      <codeElement xsi:type="code:MemberUnit" stereotype="//@extensionFamily.0/@stereotype.18">
+        <taggedValue xsi:type="kdm:TaggedValue"/>
+      </codeElement>
+      <codeElement xsi:type="code:MemberUnit" stereotype="//@extensionFamily.0/@stereotype.9">
+        <taggedValue xsi:type="kdm:TaggedValue"/>
+      </codeElement>
+      <codeElement xsi:type="code:MemberUnit" stereotype="//@extensionFamily.0/@stereotype.5" name="accountCredit">
+        <taggedValue xsi:type="kdm:TaggedValue"/>
+      </codeElement>
+      <codeElement xsi:type="code:MemberUnit" stereotype="//@extensionFamily.0/@stereotype.19">
+        <taggedValue xsi:type="kdm:TaggedValue"/>
+      </codeElement>
+      <codeElement xsi:type="code:MemberUnit" stereotype="//@extensionFamily.0/@stereotype.8">
+        <taggedValue xsi:type="kdm:TaggedValue"/>
+      </codeElement>
+    </codeElement>
+  </model>
+</kdm:Segment>

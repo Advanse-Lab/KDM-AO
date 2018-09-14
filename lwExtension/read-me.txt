@@ -1,0 +1,6 @@
+Inside the folder "javaClasses" you can find the classes needed to use the AO concepts programatically.
+
+The file "KDM-AO.kdm" is the extended KDM with the AO concepts.
+    - This file is a KDM instance of kdm package from the original KDM.
+    - You can use the stereotypes in another KDM intance that contains at least an instance of KDM code package.
+
