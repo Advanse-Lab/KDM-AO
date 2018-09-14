@@ -1,0 +1,3 @@
+Inside the folder "plugins" you can find the plugins needed to use the AO concepts in the eclipse IDE.
+
+The file "KDM-AO.ecore" is the extended KDM with the AO concepts.
